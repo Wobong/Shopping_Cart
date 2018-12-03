@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace对应的dao接口-->
+<mapper namespace="com.cheer.shoppingcart.dao.UserMapper">
+    <select id="getcount" resultType="int">
+        select count(*) from usertable
+    </select>
+    <insert id="register"  >
+        insert into usertable values(#{username},#{password},#{money})
+    </insert>
+    <select id="signin" resultType="user">
+        select * from usertable where username=#{usename} and password=#{password}
+    </select>
+
+    <select id="chakan2" resultType="int">
+        select count(*) from usertable where username=#{username}
+    </select>
+    <select id="chakan3" resultType="int">
+        select count(*) from usertable where username=#{username} and password=#{password}
+    </select>
+    <update id="changemoney">
+        update usertable set money=#{money} where username=#{username}
+    </update>
+    <select id="getmoney" resultType="double">
+        select money from usertable where username=#{username}
+    </select>
+</mapper>

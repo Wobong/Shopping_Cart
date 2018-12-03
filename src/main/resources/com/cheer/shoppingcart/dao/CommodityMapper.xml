@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace对应的dao接口-->
+<mapper namespace="com.cheer.shoppingcart.dao.CommodityMapper">
+    <select id="getCommodity" resultType="commodity">
+            select * from commodity where cname =#{cname}
+        </select>
+    <insert id="addcommodity" >
+            insert into commodity values(#{cname},#{price},#{state},#{num})
+        </insert>
+    <delete id="deletecommodity">
+            delete from commodity where cname=#{cname}
+        </delete>
+    <update id="addcount">
+            update commodity set num=#{count} where cname=#{cname}
+        </update>
+    <update id="changeprice">
+            update commodity set price=#{price} where cname=#{cname}
+        </update>
+    <select id="getall" resultType="hashmap">
+        select cname 商品名, price 单价, num 数量, state 商品状态  from commodity order by num
+    </select>
+    <select id="chakan" resultType="int">
+        select count(*) from commodity where cname=#{cname}
+    </select>
+    <select id="chakan2" resultType="int">
+        select num from commodity where cname=#{cname}
+    </select>
+</mapper>

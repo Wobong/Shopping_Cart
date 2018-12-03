@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace对应的dao接口-->
+<mapper namespace="com.cheer.shoppingcart.dao.RecordMapper">
+    <insert id="addrecord">
+        insert into ${tablename} values(#{record.cname},#{record.price},#{record.num},#{record.tprice},#{record.orderdate})
+    </insert>
+    <delete id="deleterecord">
+        delete from ${tablename} where userid+#{userid} and cname=#{cname}
+    </delete>
+    <update id="createrecord">
+        create table ${tablename}(cname varchar(255) not null,price double(10,2) not null,num int(10) null, tprice double(15,2)not null,orderdate varchar(50) not null)
+    </update>
+    <select id="getall" resultType="hashmap">
+        select cname 商品名,price 单价,  num 数量,tprice 总价, orderdate 购买日期 from ${tablename}
+    </select>
+    <delete id="deleteall" >
+        delete from ${tablename}
+    </delete>
+    <select id="cnamequery" resultType="int">
+        select count(*) from ${tablename} where cname=#{cname}
+    </select>
+    <select id="getmoney" resultType="double">
+        select money from usertable where username=#{username}
+    </select>
+</mapper>

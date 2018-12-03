@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace对应的dao接口-->
+<mapper namespace="com.cheer.shoppingcart.dao.LocMapper">
+    <select id="getloc" resultType="loc">
+        select * from ${tablename} where  locid= #{locid}
+    </select>
+    <insert id="addloc" >
+        insert into ${tablename} values(#{loc.locid},#{loc.phone},#{loc.location});
+    </insert>
+    <delete id="deleteloc" >
+        delete from ${tablename} where  locid=#{locid}
+    </delete>
+    <select id="idquery" resultType="int">
+        select count(*) from ${tablename} where locid=#{id}
+    </select>
+    <update id="createloc" parameterType="String">
+        create table ${tablename} (locid int not null,phone varchar(255) not null,location varchar(255) not null)
+    </update>
+    <select id="getall" resultType="hashmap">
+        select locid 地址id,phone 手机号码,loction 地址 from ${tablename} order by locid
+    </select>
+</mapper>

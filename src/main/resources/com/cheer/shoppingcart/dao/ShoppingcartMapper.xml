@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace对应的dao接口-->
+<mapper namespace="com.cheer.shoppingcart.dao.ShoppingcartMapper">
+        <insert id="addlist" >
+            insert into ${tablename} values(#{shoppingcart.cname},#{shoppingcart.price},#{shoppingcart.num},#{shoppingcart.tprice})
+        </insert>
+    <delete id="deleteshoppingcart" parameterType="String">
+        delete from ${tablename}  where  cname=#{cname}
+    </delete>
+    <delete id="deleteall">
+        delete from ${tablename}
+    </delete>
+
+    <update id="changecount" >
+        update ${tablename} set num=#{count} where  cname=#{cname}
+    </update>
+    <select id="getall" resultType="hashmap">
+        select cname 商品名,price 单价,num 数量,tprice 总价 from ${tablename}
+    </select>
+    <select id="cnamequery" resultType="int">
+        select count(*) from ${tablename} where  cname=#{cname}
+    </select>
+    <select id="getcart" resultType="shoppingcart">
+        select * from ${tablename} where  cname=#{cname}
+    </select>
+    <update id="createcart">
+        create table ${tablename} (cname varchar(50) not null,price double(10,2) not null,num int(11) not null,tprice double(10,2) not null)
+    </update>
+    <select id="getcount" resultType="int">
+        select num from ${tablename} where cname=#{cname}
+    </select>
+    <select id="getcount1" resultType="int">
+        select count(*) from ${tablename}
+    </select>
+</mapper>
